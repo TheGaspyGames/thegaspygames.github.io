@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The_Gaspy_Games — Portafolio</title>
+  <style>
+    :root{
+      --bg:#050d0f;
+      --card:#0f1a1d;
+      --muted:#b2f7f4;
+      --accent1:#39e3f2;
+      --accent2:#00ffcc;
+      --accent3:#ff3333;
+      --glass: rgba(57,227,242,0.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:"Segoe UI", Inter, sans-serif;
+      background: radial-gradient(1000px 600px at 15% 15%, rgba(57,227,242,0.08), transparent),
+                  radial-gradient(800px 400px at 85% 85%, rgba(0,255,204,0.08), transparent),
+                  var(--bg);
+      color:#eaffff;
+      line-height:1.5;
+      padding:28px;
+    }
+    .banner img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(57,227,242,0.3);
+    }
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:28px;
+    }
+    .card{
+      background: var(--card);
+      border:1px solid rgba(57,227,242,0.1);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow: 0 0 18px rgba(57,227,242,0.12);
+    }
+    .avatar{
+      display:flex;
+      justify-content:center;
+      margin-bottom:18px;
+    }
+    .avatar .img{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      border:3px solid var(--accent3);
+      box-shadow:0 0 15px rgba(57,227,242,0.4);
+      object-fit:cover;
+    }
+    h1{ margin:0; font-size:26px; color:var(--accent1); }
+    .handle{ color:var(--muted); font-size:14px; }
+    .bio{ margin-top:12px; font-size:14px; color:#dff; }
+    .links{ margin-top:16px; display:flex; gap:8px; flex-wrap:wrap; }
+    .pill{
+      background:var(--glass);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--accent2);
+      text-decoration:none;
+      border:1px solid rgba(0,255,204,0.3);
+      transition: all .2s;
+    }
+    .pill:hover{ background:var(--accent2); color:#000; }
+    main{ padding-top:6px; }
+    section{ margin-bottom:20px; }
+    section h3{ margin:0 0 12px; font-size:17px; color:var(--accent2); }
+    .gustos{ display:flex; gap:10px; flex-wrap:wrap; }
+    .chip{
+      background: linear-gradient(135deg, rgba(57,227,242,0.15), rgba(0,255,204,0.1));
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid rgba(0,255,204,0.25);
+      font-size:14px;
+      color:#fff;
+      box-shadow:0 0 6px rgba(57,227,242,0.3);
+    }
+    .servers{ display:grid; gap:10px; }
+    .server{
+      background:linear-gradient(135deg, rgba(57,227,242,0.08), rgba(0,255,204,0.05));
+      padding:12px;
+      border-radius:12px;
+      border-left:4px solid var(--accent2);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition: transform .2s;
+    }
+    .server:hover{ transform:translateX(5px); }
+    .server .title{ font-weight:700; color:var(--accent1);}
+    .server .meta{ color:var(--muted); font-size:13px; }
+    footer{ text-align:center; font-size:13px; color:var(--muted); margin-top:20px;}
+    @media(max-width:880px){ .container{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <img src="banner.jpg" alt="Banner" />
+  </div>
+  <div class="container">
+    <aside class="card">
+      <div class="avatar">
+        <video class="img" autoplay loop muted playsinline>
+          <source src="perfil.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+      </div>
+      <h1>The_Gaspy_Games</h1>
+      <div class="handle">@TheGaspyGames</div>
+      <p class="bio">Apasionado de Discord. Moderador, administrador y creador de bots. Con experiencia gestionando comunidades y desarrollando proyectos.</p>
+      <div class="links">
+        <a class="pill" href="#experiencia">Experiencia</a>
+        <a class="pill" href="#gustos">Gustos</a>
+      </div>
+    </aside>
+    <main>
+      <section id="gustos" class="card">
+        <h3>Mis gustos</h3>
+        <div class="gustos">
+          <div class="chip">🎮 Videojuegos</div>
+          <div class="chip">💻 Tecnología</div>
+          <div class="chip">🌐 Comunidades</div>
+          <div class="chip">✨ Diseño futurista</div>
+        </div>
+      </section>
+      <section id="experiencia" class="card">
+        <h3>Experiencia en Discord</h3>
+        <div class="servers">
+          <div class="server">
+            <div>
+              <div class="title">🌍 RedCraft</div>
+              <div class="meta">Administrador · Server de Minecraft</div>
+            </div>
+            <div>
+              1.072 usuarios<br>
+              <a href="https://discord.gg/YH8kQ24wqU" target="_blank" class="pill">Unirse</a>
+            </div>
+          </div>
+          <div class="server">
+            <div>
+              <div class="title">🛡️ La Cueva de Quillo</div>
+              <div class="meta">Sr. Mod</div>
+            </div>
+            <div>
+              543 usuarios<br>
+              <a href="https://discord.gg/XQRpXFj4rX" target="_blank" class="pill">Unirse</a>
+            </div>
+          </div>
+          <div class="server">
+            <div>
+              <div class="title">⚙️ El Sótano de Imkodo</div>
+              <div class="meta">Manager</div>
+            </div>
+            <div>
+              543 usuarios<br>
+              <a href="https://discord.gg/8K7v8eYn" target="_blank" class="pill">Unirse</a>
+            </div>
+          </div>
+          <div class="server">
+            <div>
+              <div class="title">👥 Aiden Community</div>
+              <div class="meta">Manager</div>
+            </div>
+            <div>
+              195 usuarios<br>
+              <a href="https://discord.gg/UC57fhWEXq" target="_blank" class="pill">Unirse</a>
+            </div>
+          </div>
+          <div class="server">
+            <div>
+              <div class="title">🎶 El BitSonico Community</div>
+              <div class="meta">Manager + Dev de Bot</div>
+            </div>
+            <div>
+              107 usuarios<br>
+              <a href="https://discord.gg/bpKAvryXxV" target="_blank" class="pill">Unirse</a>
+            </div>
+          </div>
+          <div class="server">
+            <div>
+              <div class="title">⭐ Starbive</div>
+              <div class="meta">Owner (ex clan de NauticMC)</div>
+            </div>
+            <div>—</div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        © 2025 The_Gaspy_Games · Portafolio
+      </footer>
+    </main>
+  </div>
+
+  <!-- Música de fondo -->
+  <audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+</body>
+</html>
