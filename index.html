@@ -97,6 +97,15 @@
           <p class="subtitle">Experiencias y servidores ordenados por importancia</p>
         </div>
       </div>
+      <button class="menu-toggle" aria-label="Menú de navegación">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav">
+        <a href="/" class="nav-link active">🏠 Inicio</a>
+        <a href="/canciones" class="nav-link">🎵 Mi Música</a>
+      </nav>
       <div class="profile">
         <!-- Sustituye assets/profile.svg por tu imagen real si la tienes -->
         <img src="assets/profile.gif" alt="Foto de perfil" class="profile-pic">
@@ -348,6 +357,24 @@
     // Inicializar el reproductor
     initializePlaylist();
     loadCurrentSong();
+  </script>
+  <script>
+    // Menú de hamburguesa
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+
+    // Cerrar el menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>

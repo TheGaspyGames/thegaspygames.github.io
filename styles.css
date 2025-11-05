@@ -19,6 +19,92 @@ h2{margin-top:18px}
 .role{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042018;padding:6px 10px;border-radius:999px;font-size:13px;font-weight:600}
 .servers-list p{margin:6px 0 0 0;color:var(--muted);font-size:15px}
 .site-footer{padding:18px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,0.02);margin-top:36px}
+
+/* Navigation styles */
+.main-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(90deg,var(--accent),#60a5fa);
+  color: #042018;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+
+/* Menú de hamburguesa */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background: var(--bg);
+    padding: 80px 20px 20px;
+    flex-direction: column;
+    z-index: 5;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .main-nav.active {
+    display: flex;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+  }
+}
 @media(min-width:700px){.servers-list li{display:block}}
 /* Header: perfil */
 .header-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -37,10 +123,42 @@ h2{margin-top:18px}
 .join-button:hover{filter:brightness(0.95);transform:translateY(-1px)}
 
 @media(max-width:620px){
-  .header-top{flex-direction:column;align-items:flex-start}
-  .server-entry{flex-direction:column;align-items:flex-start}
-  .server-actions{width:100%;margin-top:8px}
-  .join-button{width:140px}
+  .header-top{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .server-entry{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .server-actions{
+    width: 100%;
+    margin-top: 8px;
+  }
+  .join-button{
+    width: 140px;
+  }
+  .audio-player {
+    min-width: auto;
+    left: 20px;
+    right: 20px;
+  }
+  .container {
+    padding: 16px;
+  }
+  .servers-list {
+    margin-left: 10px;
+  }
+  .profile {
+    width: 100%;
+    justify-content: center;
+  }
+  .header-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* Puedes personalizar colores, fuentes y añadir imágenes o iconos */
