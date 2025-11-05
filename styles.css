@@ -1,0 +1,46 @@
+:root{
+  --bg:#0f1720;
+  --card:#0b1220;
+  --muted:#9aa6b2;
+  --accent:#6ee7b7;
+  --text:#e6eef6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#061021);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:900px;margin:0 auto;padding:28px}
+.site-header{background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.03)}
+.site-header h1{margin:0;padding:20px 0;font-size:28px}
+.subtitle{margin:0 0 18px 0;color:var(--muted)}
+h2{margin-top:18px}
+.note{color:var(--muted);font-size:14px}
+.servers-list{list-style:decimal;margin:12px 0 32px 20px;padding:0}
+.servers-list li{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:8px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.02);}
+.servers-list h3{margin:0 0 6px 0;font-size:18px;display:flex;align-items:center;gap:12px}
+.role{background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042018;padding:6px 10px;border-radius:999px;font-size:13px;font-weight:600}
+.servers-list p{margin:6px 0 0 0;color:var(--muted);font-size:15px}
+.site-footer{padding:18px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,0.02);margin-top:36px}
+@media(min-width:700px){.servers-list li{display:block}}
+/* Header: perfil */
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.profile{display:flex;align-items:center;gap:12px}
+.profile-pic{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.06);background:linear-gradient(90deg,var(--accent),#60a5fa)}
+.profile-meta{display:flex;flex-direction:column}
+.profile-meta .name{font-weight:700}
+.profile-meta .discord{color:var(--muted);font-size:13px}
+
+/* Servidores: imagen + contenido + acción */
+.server-entry{display:flex;align-items:center;gap:14px}
+.server-img{width:72px;height:72px;flex:0 0 72px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,0.02)}
+.server-content{flex:1}
+.server-actions{flex:0 0 auto;margin-left:12px}
+.join-button{display:inline-block;background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042018;padding:8px 12px;border-radius:10px;font-weight:700;text-decoration:none;border:none}
+.join-button:hover{filter:brightness(0.95);transform:translateY(-1px)}
+
+@media(max-width:620px){
+  .header-top{flex-direction:column;align-items:flex-start}
+  .server-entry{flex-direction:column;align-items:flex-start}
+  .server-actions{width:100%;margin-top:8px}
+  .join-button{width:140px}
+}
+
+/* Puedes personalizar colores, fuentes y añadir imágenes o iconos */
