@@ -7,13 +7,91 @@
   <!-- Favicon / site logo: coloca assets/site-logo.png o assets/favicon.ico -->
   <link rel="icon" href="assets/site-logo.png">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .audio-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      border-radius: 12px;
+      z-index: 1000;
+      min-width: 300px;
+    }
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .audio-player button {
+      background: var(--accent);
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .audio-player button:hover {
+      opacity: 0.9;
+    }
+    .song-info {
+      color: white;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .song-progress {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    .playlist {
+      max-height: 150px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+    .playlist-item {
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .playlist-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .playlist-item.active {
+      background: rgba(var(--accent-rgb), 0.3);
+    }
+    /* Personalización de la barra de desplazamiento para la playlist */
+    .playlist::-webkit-scrollbar {
+      width: 6px;
+    }
+    .playlist::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+    .playlist::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-top">
       <div class="header-left">
-        <!-- Logo de la página: reemplaza assets/site-logo.png por tu imagen -->
-        <img src="assets/site-logo.png" alt="Logo" class="site-logo">
         <div class="site-title">
           <h1>Portafolio</h1>
           <p class="subtitle">Experiencias y servidores ordenados por importancia</p>
@@ -32,7 +110,19 @@
   <main class="container">
     <section id="about">
       <h2>Sobre mí</h2>
-      <p>Soy Gaspy,Soy un chico que modera servidores de Discord y desarrolla bots de Discord, También me manejo en el area de configuracion de servidores (De Discord). Además de eso me gusta escuchar musica del rollo Japonés (J-pop, Vocaloid, UTAU, etc) y de la epoca del 2010. Me encanta Hatsune Miku, Kasane Teto, ADO, La oreja de Van Gogh y muchos más artistas.</p>
+      <div class="about-content">
+        <p><strong>Desarrollo y Moderación:</strong> Soy Gaspy, un apasionado desarrollador de bots y moderador de servidores de Discord. Me especializo en la configuración, gestión y administración de comunidades online, asegurando un entorno positivo y bien organizado.</p>
+        
+        <p><strong>Música e Intereses:</strong> Como amante de la música, tengo una especial fascinación por la música japonesa, incluyendo:</p>
+        <ul class="interests-list">
+          <li>J-pop y música Vocaloid</li>
+          <li>Artistas icónicos como Hatsune Miku, Kasane Teto y ADO</li>
+          <li>Clásicos de la década del 2010</li>
+          <li>La Oreja de Van Gogh y otros artistas diversos</li>
+        </ul>
+
+        <p><strong>Experiencia:</strong> A lo largo de mi trayectoria, he contribuido al crecimiento y desarrollo de múltiples comunidades de Discord, implementando sistemas de moderación efectivos y desarrollando soluciones personalizadas mediante bots.</p>
+      </div>
     </section>
 
     <section id="experiencias">
@@ -143,5 +233,121 @@
       <p>Hecho con ♥ — Gaspy</p>
     </div>
   </footer>
+
+  <div class="audio-player">
+    <div class="song-info">
+      <span id="currentSong">Selecciona una canción</span>
+    </div>
+    <div class="song-progress" id="progressContainer">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="audio-controls">
+      <button onclick="previousSong()">⏮</button>
+      <button onclick="toggleMusic()" id="musicToggle">▶</button>
+      <button onclick="nextSong()">⏭</button>
+    </div>
+    <div class="playlist" id="playlist">
+      <!-- Las canciones se agregarán aquí dinámicamente -->
+    </div>
+    <audio id="bgMusic">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+
+  <script>
+    // Lista de canciones (actualiza esta lista con tus canciones)
+    const songs = [
+      {
+        title: "Mi Canción 1",
+        file: "assets/music/cancion1.mp3"
+      }
+      // Puedes agregar más canciones aquí
+    ];
+
+    let currentSongIndex = 0;
+    let isPlaying = false;
+    const music = document.getElementById('bgMusic');
+    const musicButton = document.getElementById('musicToggle');
+    const currentSongElement = document.getElementById('currentSong');
+    const progressBar = document.getElementById('progressBar');
+    const progressContainer = document.getElementById('progressContainer');
+    const playlist = document.getElementById('playlist');
+
+    // Inicializar la playlist
+    function initializePlaylist() {
+      playlist.innerHTML = songs.map((song, index) => `
+        <div class="playlist-item ${index === currentSongIndex ? 'active' : ''}" 
+             onclick="playSongAtIndex(${index})">
+          ${song.title}
+        </div>
+      `).join('');
+    }
+
+    function updatePlaylistSelection() {
+      document.querySelectorAll('.playlist-item').forEach((item, index) => {
+        item.classList.toggle('active', index === currentSongIndex);
+      });
+    }
+
+    function loadCurrentSong() {
+      const song = songs[currentSongIndex];
+      music.src = song.file;
+      currentSongElement.textContent = song.title;
+      if (isPlaying) {
+        music.play();
+      }
+      updatePlaylistSelection();
+    }
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicButton.textContent = '▶';
+      } else {
+        music.play();
+        musicButton.textContent = '⏸';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    function nextSong() {
+      currentSongIndex = (currentSongIndex + 1) % songs.length;
+      loadCurrentSong();
+    }
+
+    function previousSong() {
+      currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+      loadCurrentSong();
+    }
+
+    function playSongAtIndex(index) {
+      currentSongIndex = index;
+      loadCurrentSong();
+      if (!isPlaying) {
+        toggleMusic();
+      }
+    }
+
+    // Actualizar la barra de progreso
+    music.addEventListener('timeupdate', () => {
+      const progress = (music.currentTime / music.duration) * 100;
+      progressBar.style.width = `${progress}%`;
+    });
+
+    // Permitir cambiar la posición de la canción haciendo clic en la barra de progreso
+    progressContainer.addEventListener('click', (e) => {
+      const clickPosition = e.offsetX / progressContainer.offsetWidth;
+      music.currentTime = clickPosition * music.duration;
+    });
+
+    // Reproducir siguiente canción cuando termine la actual
+    music.addEventListener('ended', () => {
+      nextSong();
+    });
+
+    // Inicializar el reproductor
+    initializePlaylist();
+    loadCurrentSong();
+  </script>
 </body>
 </html>
