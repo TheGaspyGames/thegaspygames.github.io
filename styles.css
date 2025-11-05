@@ -44,3 +44,21 @@ h2{margin-top:18px}
 }
 
 /* Puedes personalizar colores, fuentes y añadir imágenes o iconos */
+
+/* --- Estilos para logo y separación limpia --- */
+.header-left{display:flex;align-items:center;gap:12px}
+.site-logo{width:64px;height:64px;object-fit:contain;border-radius:8px}
+.site-title h1{margin:0;font-size:24px}
+.site-title .subtitle{margin:2px 0 0 0}
+
+/* Separador visual entre header y contenido (mejora la legibilidad) */
+.site-header{background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.04);padding:12px 0 18px}
+.container{max-width:900px;margin:0 auto;padding:28px}
+
+/* Espacio extra antes del main para que se note la separación (imagen 2) */
+main.container{margin-top:12px}
+
+@media(max-width:620px){
+  .site-logo{width:52px;height:52px}
+  .site-title h1{font-size:20px}
+}
