@@ -47,7 +47,16 @@ h2{margin-top:18px}
 
 /* --- Estilos para logo y separación limpia --- */
 .header-left{display:flex;align-items:center;gap:12px}
-.site-logo{width:64px;height:64px;object-fit:contain;border-radius:8px}
+.site-logo{
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 0;
+  margin-right: 8px;
+  /* Quitar cualquier fondo o borde */
+  background: none;
+  border: none;
+}
 .site-title h1{margin:0;font-size:24px}
 .site-title .subtitle{margin:2px 0 0 0}
 
@@ -55,8 +64,36 @@ h2{margin-top:18px}
 .site-header{background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.04);padding:12px 0 18px}
 .container{max-width:900px;margin:0 auto;padding:28px}
 
-/* Espacio extra antes del main para que se note la separación (imagen 2) */
+/* Espacio extra antes del main para que se note la separación */
 main.container{margin-top:12px}
+
+/* Estilos para la sección "Sobre mí" */
+.about-content {
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.about-content p {
+  margin-bottom: 1.2em;
+}
+
+.interests-list {
+  list-style: none;
+  padding-left: 1.5em;
+  margin-top: 0.5em;
+}
+
+.interests-list li {
+  position: relative;
+  padding: 0.3em 0;
+}
+
+.interests-list li::before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: -1.2em;
+}
 
 @media(max-width:620px){
   .site-logo{width:52px;height:52px}
